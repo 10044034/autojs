@@ -25,9 +25,9 @@ function bao(){
 
 
         let itemStr = new Object()
-        itemStr.trading_time = time + data
+        itemStr.trading_time = time + ';' + data
         itemStr.order_money = balance
-        itemStr.transfer_type = "充值转账"
+        itemStr.transfer_type = mode1
         itemStr.reciprocal_name = ""
         str.push(itemStr)
         //console.log(flag+"----"+mode + "---"+"---"+balance+"---"+time + "---" + money)//支付方式
