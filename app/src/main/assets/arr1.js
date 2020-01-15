@@ -1,17 +1,22 @@
 toast("即将刷新6")
-swipe(800,300,800,600,1000)
+//swipe(800,300,800,600,1000)
 console.show()
 bao()
 function bao(){
     try {
         var zhangdan = text("账单").findOne(1000).parent().parent().parent().parent().parent().child(2).child(0).child(0).child(1).child(0).child(0).child(0).child(1).children()
+
+        className("ListView").scrollBackward();
+        sleep(5000)
+//        id("as_inner_list_view").scrollUp()
     } catch (error) {
         launchApp("支付宝")
-        sleep(3000)
+        sleep(5000)
         text("我的").findOnce().parent().click()
-         sleep(1000)
+         sleep(5000)
          text("账单").findOnce().parent().parent().parent().parent().parent().click()
-         sleep(1000)
+         sleep(5000)
+         sleep(5000)
          var zhangdan = text("账单").findOne(1000).parent().parent().parent().parent().parent().child(2).child(0).child(0).child(1).child(0).child(0).child(0).child(1).children()
 
     }
