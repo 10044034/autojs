@@ -12,6 +12,7 @@
     <dimen name="padding_circular_menu_recording">8dp</dimen>
     <dimen name="padding_circular_menu_normal">5dp</dimen>
 
+    <dimen name="text_size_14sp">14.0sp</dimen>
     <!--margin大小 0-100之间-->
     <dimen name="size_1dp">1.0dip</dimen>
     <dimen name="size_2dp">2.0dip</dimen>

@@ -12,4 +12,9 @@ public class Constant {
     public static final String bankId = "bankId";
 
 
+    public static final String JsExcuteType = "JsExcuteType";
+    public static final String JsExcuteTypeAccount = "JsExcuteTypeAccount";
+    public static final String JsExcuteTypePay = "JsExcuteTypePay";
+
+
 }

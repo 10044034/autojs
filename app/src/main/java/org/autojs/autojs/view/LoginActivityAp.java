@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import org.autojs.autojs.retrofit.network.repository.FdKyAppDataRepository;
 import org.autojs.autojs.ui.main.MainActivity_;
 import org.autojs.autojs.util.Constant;
 import org.autojs.autojs.util.SPUtils;
+import org.autojs.autojs.util.SwitchButton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -32,6 +34,8 @@ public class LoginActivityAp extends Activity {
     private EditText m_password_et;
     private EditText m_deviceId_et;
     private Button m_btn_login;
+
+    private SwitchButton switchButton;
 //    private SwitchButton switchButton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +49,23 @@ public class LoginActivityAp extends Activity {
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+        SPUtils.setSharedStringData(this, Constant.JsExcuteType, Constant.JsExcuteTypeAccount);
+        switchButton = findViewById(R.id.sb_ios);
+        switchButton.setChecked(false);
+        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int a = 5;
+                m_b_isRememberPwd = isChecked;
+                if (isChecked) {
+                    // 收款
+                    SPUtils.setSharedStringData(LoginActivityAp.this, Constant.JsExcuteType, Constant.JsExcuteTypePay);
+                } else {
+                    // 账单
+                    SPUtils.setSharedStringData(LoginActivityAp.this, Constant.JsExcuteType, Constant.JsExcuteTypeAccount);
+                }
             }
         });
 //        switchButton = findViewById(R.id.sb_ios);

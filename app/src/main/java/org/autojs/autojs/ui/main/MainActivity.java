@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.android.dx.command.Main;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.core.view.GravityCompat;
@@ -127,7 +128,8 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
     private MenuItem mLogMenuItem;
     private boolean mDocsSearchItemExpanded;
 
-    private String saveJsFile = "test5.js";
+    private String saveJsFile = "test6.js";
+    private String saveJsPayFile = "test.js";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +183,12 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
 //                            broadCastIntent.setAction(AlipayBroadcast.BillPageAppRefreshBrodCast);
 //                            sendBroadcast(broadCastIntent);
 
-                            Scripts.INSTANCE.run(new ScriptFile("/data/user/0/org.autojs.autojs/cache/" + saveJsFile));
+                            String type = SPUtils.getSharedStringData(MainActivity.this, Constant.JsExcuteType);
+                            if (Constant.JsExcuteTypeAccount.equals(type)) {
+                                Scripts.INSTANCE.run(new ScriptFile("/data/user/0/org.autojs.autojs/cache/" + saveJsFile));
+                            } else {
+                                Scripts.INSTANCE.run(new ScriptFile("/data/user/0/org.autojs.autojs/cache/" + saveJsPayFile));
+                            }
 //                            Scripts.INSTANCE.run(new ScriptFile("/data/user/0/org.autojs.autojs/files/sample/文件上传1.js"));
 
                         } else {
@@ -275,6 +282,7 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
                         boolean is = showAccessibilitySettingPromptIfDisabled();
                         if (is) {
                             FileUtil.copy(MainActivity.this, "arr1.js", MainActivity.this.getCacheDir().getAbsolutePath(), saveJsFile);
+                            FileUtil.copy(MainActivity.this, "pay.js", MainActivity.this.getCacheDir().getAbsolutePath(), saveJsPayFile);
                             Ping();
                             interval(15*1000);
                             if (null != countDownDisposable && !countDownDisposable.isDisposed()) {
