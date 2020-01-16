@@ -16,7 +16,6 @@ function bao(){
          sleep(5000)
          text("账单").findOnce().parent().parent().parent().parent().parent().click()
          sleep(5000)
-         sleep(5000)
          var zhangdan = text("账单").findOne(1000).parent().parent().parent().parent().parent().child(2).child(0).child(0).child(1).child(0).child(0).child(0).child(1).children()
 
     }
@@ -53,6 +52,9 @@ function bao(){
                 }
               }
             );
+//            id("back_button").findOne().click();
+//            toast('22222222')
+            desc("返回").findOne().click();
     }
 
 
