@@ -47,7 +47,7 @@ class App : MultiDexApplication() {
         instance = WeakReference(this)
         setUpStaticsTool()
         setUpDebugEnvironment()
-        CrashReport.initCrashReport(applicationContext, "1d1c86b6c1", true)
+//        CrashReport.initCrashReport(applicationContext, "1d1c86b6c1", true)
 //        CrashReport.testJavaCrash();
         init()
     }
