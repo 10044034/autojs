@@ -46,11 +46,17 @@ public class SubmitDataBroadcast extends BroadcastReceiver{
             List<SubmitDataBean> submitDataBeanList = JSON.parseArray(data, SubmitDataBean.class);
             List<SubmitDataParam> submitDataParamList = new ArrayList<>();
             for (SubmitDataBean submitDataBean : submitDataBeanList) {
+//                SubmitDataParam submitDataParam = new SubmitDataParam();
+//                submitDataParam.setOrder_money(submitDataBean.getOrder_money());
+//                submitDataParam.setReciprocal_name(submitDataBean.getReciprocal_name());
+//                submitDataParam.setTrading_time(submitDataBean.getTrading_time());
+//                submitDataParam.setTransfer_type(submitDataBean.getTransfer_type().getMText());
+//                submitDataParamList.add(submitDataParam);
                 SubmitDataParam submitDataParam = new SubmitDataParam();
                 submitDataParam.setOrder_money(submitDataBean.getOrder_money());
-                submitDataParam.setReciprocal_name(submitDataBean.getReciprocal_name());
+                submitDataParam.setReciprocal_name(submitDataBean.getTransfer_type().getMText());
                 submitDataParam.setTrading_time(submitDataBean.getTrading_time());
-                submitDataParam.setTransfer_type(submitDataBean.getTransfer_type().getMText());
+                submitDataParam.setTransfer_type("充值转账");
                 submitDataParamList.add(submitDataParam);
             }
 

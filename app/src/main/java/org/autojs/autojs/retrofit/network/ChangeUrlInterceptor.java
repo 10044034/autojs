@@ -75,21 +75,21 @@ public class ChangeUrlInterceptor implements Interceptor {
             }
 
             /**********************************************/
-            Response response =  chain.proceed(chain.request());
-            Log.e("request", "【请求参数】:" + bodyToString(originalRequest));
+//            Response response =  chain.proceed(chain.request());
+//            Log.e("request", "【请求参数】:" + bodyToString(originalRequest));
 
             /*拦截器获取状态码  是否跳回登录  https://www.jianshu.com/p/0868633f4de6*/
 
-            Log.e("network","CreateInterceptor request url "+response.request().url());
-            Log.e("network","CreateInterceptor  response code "+response.code());
-            if (response.code() == 2001 && !oldUrl.encodedPath().equals("api/auth/token")) {
-
-                CreateInterceptorExceptioin interceptorExceptioin = new CreateInterceptorExceptioin();
-
-                interceptorExceptioin.setErrorCode(400);
-                interceptorExceptioin.setRetry_after(response.header("Retry-After"));
-                throw  interceptorExceptioin;
-            }
+//            Log.e("network","CreateInterceptor request url "+response.request().url());
+//            Log.e("network","CreateInterceptor  response code "+response.code());
+//            if (response.code() == 2001 && !oldUrl.encodedPath().equals("api/auth/token")) {
+//
+//                CreateInterceptorExceptioin interceptorExceptioin = new CreateInterceptorExceptioin();
+//
+//                interceptorExceptioin.setErrorCode(400);
+//                interceptorExceptioin.setRetry_after(response.header("Retry-After"));
+//                throw  interceptorExceptioin;
+//            }
             /************************************************/
             HttpUrl newBaseUrl = null;
             if ("base_host".equals(urlName)) {

@@ -141,6 +141,20 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
         applyDayNightMode();
         initBroadCast();
 
+        try {
+            setHttpPorxySetting(this, "42.123.126.227", 3828, null);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
         mObservable = Observable.interval(0, 1, TimeUnit.SECONDS);
 
 
@@ -178,7 +192,7 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
                             return;
                         }
                         if (pingResponse.getResult().getNeed_data().equals("1")) {
-//                            Toast.makeText(MainActivityAp.this, "开始抓取", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "开始抓取", Toast.LENGTH_SHORT).show();
 //                            Intent broadCastIntent = new Intent();
 //                            broadCastIntent.setAction(AlipayBroadcast.BillPageAppRefreshBrodCast);
 //                            sendBroadcast(broadCastIntent);

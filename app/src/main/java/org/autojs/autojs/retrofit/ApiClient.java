@@ -1,13 +1,20 @@
-package org.autojs.autojs.retrofit.network;
+package org.autojs.autojs.retrofit;
 
 
 
+
+import com.ihsanbal.logging.Level;
+import com.ihsanbal.logging.LoggingInterceptor;
+
+import org.autojs.autojs.BuildConfig;
+import org.autojs.autojs.retrofit.network.ChangeUrlInterceptor;
 import org.autojs.autojs.retrofit.network.service.FdKyAppDataService;
 import org.autojs.autojs.util.ApiConstants;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.internal.platform.Platform;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  */
 
-public class ApiClient{
+public class ApiClient {
 
 
     /**
@@ -77,15 +84,15 @@ public class ApiClient{
 
 //                    OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
 //                    httpClientBuilder.connectTimeout(15, TimeUnit.SECONDS);
-//                    LoggingInterceptor httpLoggingInterceptor1 = new LoggingInterceptor.Builder()
-//                            .loggable(BuildConfig.DEBUG)
-//                            .setLevel(Level.BASIC)
-//                            .log(Platform.INFO)
-//                            .request("请求")
-//                            .response("响应")
-//                            .build();
-//
-//                    builder.addInterceptor(httpLoggingInterceptor1);
+                    LoggingInterceptor httpLoggingInterceptor1 = new LoggingInterceptor.Builder()
+                            .loggable(BuildConfig.DEBUG)
+                            .setLevel(Level.BASIC)
+                            .log(Platform.INFO)
+                            .request("请求")
+                            .response("响应")
+                            .build();
+
+                    builder.addInterceptor(httpLoggingInterceptor1);
 
                     // 日志显示级别
 //                    HttpLoggingInterceptor.Level level= HttpLoggingInterceptor.Level.BASIC;
@@ -108,18 +115,18 @@ public class ApiClient{
         return okHttpClientInstance;
     }
 
-//    private OkHttpClient.Builder getClient(){
-//        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
-//        httpClientBuilder.connectTimeout(15, TimeUnit.SECONDS);
-//        //add log record
-//            //打印网络请求日志
-////            LoggingInterceptor httpLoggingInterceptor = new LoggingInterceptor.Builder()
-////                    .log(Platform.INFO)
-////                    .request("请求")
-////                    .response("响应")
-////                    .build();
-////            httpClientBuilder.addInterceptor(httpLoggingInterceptor);
-//        return httpClientBuilder;
-//    }
+    private OkHttpClient.Builder getClient(){
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.connectTimeout(15, TimeUnit.SECONDS);
+        //add log record
+            //打印网络请求日志
+            LoggingInterceptor httpLoggingInterceptor = new LoggingInterceptor.Builder()
+                    .log(Platform.INFO)
+                    .request("请求")
+                    .response("响应")
+                    .build();
+            httpClientBuilder.addInterceptor(httpLoggingInterceptor);
+        return httpClientBuilder;
+    }
 
 }
