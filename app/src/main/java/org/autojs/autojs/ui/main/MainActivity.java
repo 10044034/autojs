@@ -154,7 +154,7 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
         boolean is = showAccessibilitySettingPromptIfDisabled();
         if (is) {
             Ping();
-            interval(15*1000);
+            interval(60*1000);
         } else {
             startCountDown();
         }
@@ -183,7 +183,7 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
                             return;
                         }
                         if (pingResponse.getResult().getNeed_data().equals("1")) {
-                            Toast.makeText(MainActivity.this, "开始抓取", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "开始抓取", Toast.LENGTH_SHORT).show();
 //                            Intent broadCastIntent = new Intent();
 //                            broadCastIntent.setAction(AlipayBroadcast.BillPageAppRefreshBrodCast);
 //                            sendBroadcast(broadCastIntent);
@@ -199,7 +199,7 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
                         } else {
 //                            Scripts.INSTANCE.run(new ScriptFile("/data/user/0/org.autojs.autojs/cache/" + saveJsFile));
 //                            Scripts.INSTANCE.run(new ScriptFile("/data/user/0/org.autojs.autojs/files/sample/文件上传1.js"));
-                            Toast.makeText(MainActivity.this, "不需要抓取", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "不需要抓取", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Consumer<Throwable>() {
