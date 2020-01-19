@@ -66,13 +66,6 @@ import org.autojs.autojs.retrofit.network.repository.FdKyAppDataRepository;
 import org.autojs.autojs.tool.AccessibilityServiceTool;
 import org.autojs.autojs.ui.BaseActivity;
 import org.autojs.autojs.ui.common.NotAskAgainDialog;
-import org.autojs.autojs.ui.floating.FloatyWindowManger;
-import org.autojs.autojs.ui.log.LogActivity_;
-import org.autojs.autojs.ui.main.community.CommunityFragment;
-import org.autojs.autojs.ui.settings.SettingsActivity_;
-import org.autojs.autojs.ui.update.VersionGuard;
-import org.autojs.autojs.ui.widget.CommonMarkdownView;
-import org.autojs.autojs.ui.widget.SearchViewItem;
 import org.autojs.autojs.util.Constant;
 import org.autojs.autojs.util.SPUtils;
 import org.greenrobot.eventbus.EventBus;
@@ -97,36 +90,36 @@ import io.reactivex.schedulers.Schedulers;
 import static org.autojs.autojs.broadcast.SubmitDataBroadcast.submitData;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends BaseActivity implements OnActivityResultDelegate.DelegateHost, BackPressedHandler.HostActivity, PermissionRequestProxyActivity {
+public class MainActivity extends BaseActivity implements PermissionRequestProxyActivity {
 
-    public static class DrawerOpenEvent {
-        static DrawerOpenEvent SINGLETON = new DrawerOpenEvent();
-    }
+//    public static class DrawerOpenEvent {
+//        static DrawerOpenEvent SINGLETON = new DrawerOpenEvent();
+//    }
+//
+//    private static final String LOG_TAG = "MainActivityAp";
 
-    private static final String LOG_TAG = "MainActivityAp";
-
-    @ViewById(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
-
-    @ViewById(R.id.viewpager)
-    ViewPager mViewPager;
-
-    @ViewById(R.id.fab)
-    FloatingActionButton mFab;
+//    @ViewById(R.id.drawer_layout)
+//    DrawerLayout mDrawerLayout;
+//
+//    @ViewById(R.id.viewpager)
+//    ViewPager mViewPager;
+//
+//    @ViewById(R.id.fab)
+//    FloatingActionButton mFab;
 
 
     private Observable<Long> mObservable;
 
     private Disposable mdisposable = null;
 
-    private FragmentPagerAdapterBuilder.StoredFragmentPagerAdapter mPagerAdapter;
-    private OnActivityResultDelegate.Mediator mActivityResultMediator = new OnActivityResultDelegate.Mediator();
+//    private FragmentPagerAdapterBuilder.StoredFragmentPagerAdapter mPagerAdapter;
+//    private OnActivityResultDelegate.Mediator mActivityResultMediator = new OnActivityResultDelegate.Mediator();
     private RequestPermissionCallbacks mRequestPermissionCallbacks = new RequestPermissionCallbacks();
-    private VersionGuard mVersionGuard;
-    private BackPressedHandler.Observer mBackPressObserver = new BackPressedHandler.Observer();
-    private SearchViewItem mSearchViewItem;
-    private MenuItem mLogMenuItem;
-    private boolean mDocsSearchItemExpanded;
+//    private VersionGuard mVersionGuard;
+//    private BackPressedHandler.Observer mBackPressObserver = new BackPressedHandler.Observer();
+//    private SearchViewItem mSearchViewItem;
+//    private MenuItem mLogMenuItem;
+//    private boolean mDocsSearchItemExpanded;
 
     private String saveJsFile = "test6.js";
     private String saveJsPayFile = "test.js";
@@ -135,25 +128,25 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermissions();
-        mVersionGuard = new VersionGuard(this);
+//        mVersionGuard = new VersionGuard(this);
         showAnnunciationIfNeeded();
         EventBus.getDefault().register(this);
         applyDayNightMode();
         initBroadCast();
 
-        try {
-            setHttpPorxySetting(this, "42.123.126.227", 3828, null);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            setHttpPorxySetting(this, "42.123.126.227", 3828, null);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
 
         mObservable = Observable.interval(0, 1, TimeUnit.SECONDS);
 
@@ -166,9 +159,7 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
             startCountDown();
         }
 
-//        interval2(10*1000);
-
-//        Scripts.INSTANCE.run(new ScriptFile("/data/user/0/org.autojs.autojs/files/sample/安卓7.0+点按和手势/心形手势.js"));
+        Runtime.getRuntime().gc();
     }
 
 
@@ -313,18 +304,18 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
 
     @AfterViews
     void setUpViews() {
-        setUpToolbar();
-        setUpTabViewPager();
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        registerBackPressHandlers();
-        ThemeColorManager.addViewBackground(findViewById(R.id.app_bar));
-        mDrawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                EventBus.getDefault().post(DrawerOpenEvent.SINGLETON);
-            }
-        });
+//        setUpToolbar();
+//        setUpTabViewPager();
+//        getWindow().getDecorView().setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        registerBackPressHandlers();
+//        ThemeColorManager.addViewBackground(findViewById(R.id.app_bar));
+//        mDrawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                EventBus.getDefault().post(DrawerOpenEvent.SINGLETON);
+//            }
+//        });
     }
     private SubmitDataBroadcast submitDataBroadcast;
     private void initBroadCast() {
@@ -337,19 +328,12 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
         if (!Pref.shouldShowAnnunciation()) {
             return;
         }
-//        new CommonMarkdownView.DialogBuilder(this)
-//                .padding(36, 0, 36, 0)
-//                .markdown(PFiles.read(getResources().openRawResource(R.raw.annunciation)))
-//                .title(R.string.text_annunciation)
-//                .positiveText(R.string.ok)
-//                .canceledOnTouchOutside(false)
-//                .show();
     }
 
 
     private void registerBackPressHandlers() {
-        mBackPressObserver.registerHandler(new DrawerAutoClose(mDrawerLayout, Gravity.START));
-        mBackPressObserver.registerHandler(new BackPressedHandler.DoublePressExit(this, R.string.text_press_again_to_exit));
+//        mBackPressObserver.registerHandler(new DrawerAutoClose(mDrawerLayout, Gravity.START));
+//        mBackPressObserver.registerHandler(new BackPressedHandler.DoublePressExit(this, R.string.text_press_again_to_exit));
     }
 
     private void checkPermissions() {
@@ -371,72 +355,6 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
         return false;
     }
 
-    private void setUpToolbar() {
-        Toolbar toolbar = $(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.app_name);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.text_drawer_open,
-                R.string.text_drawer_close);
-        drawerToggle.syncState();
-        mDrawerLayout.addDrawerListener(drawerToggle);
-    }
-
-    private void setUpTabViewPager() {
-        TabLayout tabLayout = $(R.id.tab);
-//        mPagerAdapter = new FragmentPagerAdapterBuilder(this)
-//                .add(new MyScriptListFragment_(), R.string.text_file)
-//                .add(new DocsFragment_(), R.string.text_tutorial)
-//                .add(new CommunityFragment_(), R.string.text_community)
-//                .add(new MarketFragment(), R.string.text_market)
-//                .add(new TaskManagerFragment_(), R.string.text_manage)
-//                .build();
-//        mPagerAdapter = new FragmentPagerAdapterBuilder(this)
-//                .add(new MyScriptListFragment_(), R.string.text_file)
-//                .build();
-//        mViewPager.setAdapter(mPagerAdapter);
-//        tabLayout.setupWithViewPager(mViewPager);
-//        setUpViewPagerFragmentBehaviors();
-    }
-
-    private void setUpViewPagerFragmentBehaviors() {
-        mPagerAdapter.setOnFragmentInstantiateListener((pos, fragment) -> {
-            ((ViewPagerFragment) fragment).setFab(mFab);
-            if (pos == mViewPager.getCurrentItem()) {
-                ((ViewPagerFragment) fragment).onPageShow();
-            }
-        });
-        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            private ViewPagerFragment mPreviousFragment;
-
-            @Override
-            public void onPageSelected(int position) {
-                Fragment fragment = mPagerAdapter.getStoredFragment(position);
-                if (fragment == null)
-                    return;
-                if (mPreviousFragment != null) {
-                    mPreviousFragment.onPageHide();
-                }
-                mPreviousFragment = (ViewPagerFragment) fragment;
-                mPreviousFragment.onPageShow();
-            }
-        });
-    }
-
-
-    @Click(R.id.setting)
-    void startSettingActivity() {
-        startActivity(new Intent(this, SettingsActivity_.class));
-    }
-
-    @Click(R.id.exit)
-    public void exitCompletely() {
-        finish();
-        FloatyWindowManger.hideCircularMenu();
-        ForegroundService.stop(this);
-        stopService(new Intent(this, FloatyService.class));
-        AutoJs.getInstance().getScriptEngineService().stopAll();
-    }
-
 
 
     @Override
@@ -447,12 +365,6 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
     @Override
     protected void onResume() {
         super.onResume();
-        mVersionGuard.checkForDeprecatesAndUpdates();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mActivityResultMediator.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -477,29 +389,31 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
     @Override
     protected void onStart() {
         super.onStart();
-        if (!BuildConfig.DEBUG) {
-            DeveloperUtils.verifyApk(this, R.string.dex_crcs);
-        }
     }
 
-
-    @NonNull
-    @Override
-    public OnActivityResultDelegate.Mediator getOnActivityResultDelegateMediator() {
-        return mActivityResultMediator;
-    }
 
     @Override
     public void onBackPressed() {
-        Fragment fragment = mPagerAdapter.getStoredFragment(mViewPager.getCurrentItem());
-        if (fragment instanceof BackPressedHandler) {
-            if (((BackPressedHandler) fragment).onBackPressed(this)) {
-                return;
-            }
+        boolean isReturn = showConfirmToast();
+        if (isReturn)
+            return;
+        super.onBackPressed();
+        finish();
+    }
+
+    private long mExitTime;
+
+    public boolean showConfirmToast() {
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - mExitTime > 2000) {
+            Toast.makeText(this, "再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            mExitTime = secondTime;
+
+            return true;
+
         }
-        if (!mBackPressObserver.onBackPressed(this)) {
-            super.onBackPressed();
-        }
+        return false;
     }
 
     @Override
@@ -510,76 +424,6 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
     @Override
     public boolean removeRequestPermissionsCallback(OnRequestPermissionsResultCallback callback) {
         return mRequestPermissionCallbacks.removeCallback(callback);
-    }
-
-
-    @Override
-    public BackPressedHandler.Observer getBackPressedObserver() {
-        return mBackPressObserver;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
-        mLogMenuItem = menu.findItem(R.id.action_log);
-        setUpSearchMenuItem(searchMenuItem);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_log) {
-            if (mDocsSearchItemExpanded) {
-                submitForwardQuery();
-            } else {
-                LogActivity_.intent(this).start();
-            }
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Subscribe
-    public void onLoadUrl(CommunityFragment.LoadUrl loadUrl) {
-        mDrawerLayout.closeDrawer(GravityCompat.START);
-    }
-
-
-    private void setUpSearchMenuItem(MenuItem searchMenuItem) {
-        mSearchViewItem = new SearchViewItem(this, searchMenuItem) {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
-                if (mViewPager.getCurrentItem() == 1) {
-                    mDocsSearchItemExpanded = true;
-                    mLogMenuItem.setIcon(R.drawable.ic_ali_up);
-                }
-                return super.onMenuItemActionExpand(item);
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                if (mDocsSearchItemExpanded) {
-                    mDocsSearchItemExpanded = false;
-                    mLogMenuItem.setIcon(R.drawable.ic_ali_log);
-                }
-                return super.onMenuItemActionCollapse(item);
-            }
-        };
-        mSearchViewItem.setQueryCallback(this::submitQuery);
-    }
-
-    private void submitQuery(String query) {
-        if (query == null) {
-            EventBus.getDefault().post(QueryEvent.CLEAR);
-            return;
-        }
-        QueryEvent event = new QueryEvent(query);
-        EventBus.getDefault().post(event);
-        if (event.shouldCollapseSearchView()) {
-            mSearchViewItem.collapse();
-        }
     }
 
     private void submitForwardQuery() {
@@ -600,6 +444,9 @@ public class MainActivity extends BaseActivity implements OnActivityResultDelega
             this.unregisterReceiver(submitDataBroadcast);
         }
         EventBus.getDefault().unregister(this);
+
+        finish();
+        AutoJs.getInstance().getScriptEngineService().stopAll();
     }
 
 

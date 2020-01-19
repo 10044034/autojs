@@ -72,51 +72,51 @@ public class MyScriptListFragment extends ViewPagerFragment implements FloatingA
     @Override
     protected void onFabClick(FloatingActionButton fab) {
         initFloatingActionMenuIfNeeded(fab);
-        if (mFloatingActionMenu.isExpanded()) {
-            mFloatingActionMenu.collapse();
-        } else {
-            mFloatingActionMenu.expand();
-
-        }
+//        if (mFloatingActionMenu.isExpanded()) {
+//            mFloatingActionMenu.collapse();
+//        } else {
+//            mFloatingActionMenu.expand();
+//
+//        }
     }
 
     private void initFloatingActionMenuIfNeeded(final FloatingActionButton fab) {
         if (mFloatingActionMenu != null)
             return;
-        mFloatingActionMenu = getActivity().findViewById(R.id.floating_action_menu);
-        mFloatingActionMenu.getState()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SimpleObserver<Boolean>() {
-                    @Override
-                    public void onNext(@io.reactivex.annotations.NonNull Boolean expanding) {
-                        fab.animate()
-                                .rotation(expanding ? 45 : 0)
-                                .setDuration(300)
-                                .start();
-                    }
-                });
-        mFloatingActionMenu.setOnFloatingActionButtonClickListener(this);
+//        mFloatingActionMenu = getActivity().findViewById(R.id.floating_action_menu);
+//        mFloatingActionMenu.getState()
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SimpleObserver<Boolean>() {
+//                    @Override
+//                    public void onNext(@io.reactivex.annotations.NonNull Boolean expanding) {
+//                        fab.animate()
+//                                .rotation(expanding ? 45 : 0)
+//                                .setDuration(300)
+//                                .start();
+//                    }
+//                });
+//        mFloatingActionMenu.setOnFloatingActionButtonClickListener(this);
     }
 
     @Override
     public boolean onBackPressed(Activity activity) {
-        if (mFloatingActionMenu != null && mFloatingActionMenu.isExpanded()) {
-            mFloatingActionMenu.collapse();
-            return true;
-        }
-        if (mExplorerView.canGoBack()) {
-            mExplorerView.goBack();
-            return true;
-        }
+//        if (mFloatingActionMenu != null && mFloatingActionMenu.isExpanded()) {
+//            mFloatingActionMenu.collapse();
+//            return true;
+//        }
+//        if (mExplorerView.canGoBack()) {
+//            mExplorerView.goBack();
+//            return true;
+//        }
         return false;
     }
 
     @Override
     public void onPageHide() {
         super.onPageHide();
-        if (mFloatingActionMenu != null && mFloatingActionMenu.isExpanded()) {
-            mFloatingActionMenu.collapse();
-        }
+//        if (mFloatingActionMenu != null && mFloatingActionMenu.isExpanded()) {
+//            mFloatingActionMenu.collapse();
+//        }
     }
 
     @Subscribe
@@ -141,8 +141,8 @@ public class MyScriptListFragment extends ViewPagerFragment implements FloatingA
     @Override
     public void onDetach() {
         super.onDetach();
-        if (mFloatingActionMenu != null)
-            mFloatingActionMenu.setOnFloatingActionButtonClickListener(null);
+//        if (mFloatingActionMenu != null)
+//            mFloatingActionMenu.setOnFloatingActionButtonClickListener(null);
     }
 
 

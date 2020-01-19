@@ -470,12 +470,12 @@ public class DrawerFragment extends androidx.fragment.app.Fragment {
     }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onDrawerOpen(MainActivity.DrawerOpenEvent event) {
-        if (mCommunityDrawerMenu.isShown()) {
-            mCommunityDrawerMenu.refreshNotificationCount(mDrawerMenuAdapter);
-        }
-    }
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onDrawerOpen(MainActivity.DrawerOpenEvent event) {
+//        if (mCommunityDrawerMenu.isShown()) {
+//            mCommunityDrawerMenu.refreshNotificationCount(mDrawerMenuAdapter);
+//        }
+//    }
 
     private void showStableModePromptIfNeeded() {
         new NotAskAgainDialog.Builder(getContext(), "DrawerFragment.stable_mode")
