@@ -124,6 +124,8 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
     private String saveJsFile = "test6.js";
     private String saveJsPayFile = "test.js";
 
+    private Long pingIntervalTime = 60 * 1000l;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,7 +156,7 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
         boolean is = showAccessibilitySettingPromptIfDisabled();
         if (is) {
             Ping();
-            interval(60*1000);
+            interval(pingIntervalTime);
         } else {
             startCountDown();
         }
@@ -179,7 +181,7 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
                     @Override
                     public void accept(PingResponse pingResponse) throws Exception {
                         if (pingResponse.getStatus().equals("0")) {
-                            Toast.makeText(MainActivity.this, pingResponse.getMessage() , Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, pingResponse.getMessage() , Toast.LENGTH_SHORT).show();
                             return;
                         }
                         if (pingResponse.getResult().getNeed_data().equals("1")) {
@@ -231,7 +233,7 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull Long number) {
-                        Toast.makeText(MainActivity.this, "判断是否需要重新抓取", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "判断是否需要重新抓取", Toast.LENGTH_SHORT).show();
                         Ping();
 
                     }
@@ -244,7 +246,7 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
                     @Override
                     public void onComplete() {
 
-                        Toast.makeText(MainActivity.this, "开始采集onComplete", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "开始采集onComplete", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -283,13 +285,13 @@ public class MainActivity extends BaseActivity implements PermissionRequestProxy
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(MainActivity.this, "onComplete", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "onComplete", Toast.LENGTH_SHORT).show();
                         boolean is = showAccessibilitySettingPromptIfDisabled();
                         if (is) {
                             FileUtil.copy(MainActivity.this, "arr1.js", MainActivity.this.getCacheDir().getAbsolutePath(), saveJsFile);
                             FileUtil.copy(MainActivity.this, "pay.js", MainActivity.this.getCacheDir().getAbsolutePath(), saveJsPayFile);
                             Ping();
-                            interval(15*1000);
+                            interval(pingIntervalTime);
                             if (null != countDownDisposable && !countDownDisposable.isDisposed()) {
                                 countDownDisposable.dispose();
                             }

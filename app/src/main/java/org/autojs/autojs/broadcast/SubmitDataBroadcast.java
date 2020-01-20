@@ -72,9 +72,9 @@ public class SubmitDataBroadcast extends BroadcastReceiver{
 
 //                            mUploadStatus.setText("上传成功");
                             if (submitResponse.getStatus().equals("1")) {
-                                Toast.makeText(GlobalAppContext.getsApplicationContext(), "上传成功", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(GlobalAppContext.getsApplicationContext(), "上传成功", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(GlobalAppContext.getsApplicationContext(), submitResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(GlobalAppContext.getsApplicationContext(), submitResponse.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }, new Consumer<Throwable>() {
@@ -82,7 +82,7 @@ public class SubmitDataBroadcast extends BroadcastReceiver{
                         public void accept(Throwable throwable) throws Exception {
 //                            mUploadStatus.setText("上传失败");
 //                            EventBus.getDefault().post(new PayMentDataEvent("上传失败"));
-                            Toast.makeText(GlobalAppContext.getsApplicationContext(), "上传失败", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(GlobalAppContext.getsApplicationContext(), "上传失败", Toast.LENGTH_SHORT).show();
                         }
                     });
         }

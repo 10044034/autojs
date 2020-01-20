@@ -1,6 +1,6 @@
-toast("即将刷新6")
+//toast("即将刷新6")
 //swipe(800,300,800,600,1000)
-console.show()
+//console.show()
 bao()
 function bao(){
     try {
@@ -35,14 +35,14 @@ function bao(){
         itemStr.reciprocal_name = ""
         str.push(itemStr)
         //console.log(flag+"----"+mode + "---"+"---"+balance+"---"+time + "---" + money)//支付方式
-        console.log(mode1+"---"+balance+"---"+time+"---"+data)
-        toast(mode1+"---"+balance+"---"+time+"---"+data);
+//        console.log(mode1+"---"+balance+"---"+time+"---"+data)
+//        toast(mode1+"---"+balance+"---"+time+"---"+data);
     }
 
     let cdData = JSON.stringify( str );
-    toast(cdData);
+//    toast(cdData);
     if (str.length > 0) {
-        toast("数据传输中。。。")
+//        toast("数据传输中。。。")
         var action="com.submit.data"
             app.sendBroadcast(
               {
